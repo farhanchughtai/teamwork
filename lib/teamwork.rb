@@ -23,17 +23,17 @@ module Teamwork
       @api_conn.basic_auth(api_key, '')
     end
 
-    def account(request_params)
+    def account(request_params = nil)
       response = @api_conn.get "account.json", request_params
       response.body
     end
 
-    def people(request_params)
+    def people(request_params = nil)
       response = @api_conn.get "people.json", request_params
       response.body
     end
 
-    def projects(request_params)
+    def projects(request_params = nil)
       response = @api_conn.get "projects.json", request_params
       response.body
     end
