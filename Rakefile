@@ -12,7 +12,7 @@ require "hoe"
 Hoe.plugin :bundler
 
 Hoe.spec "teamwork" do
-  developer("Ed Halferty", "edhalferty@gmail.com")
+  developer("Abid Mahmood", "abidmahmoodbutt@hotmail.com")
   extra_deps << ['faraday']
   extra_deps << ['faraday_middleware']
   extra_deps << ['multi_json']
