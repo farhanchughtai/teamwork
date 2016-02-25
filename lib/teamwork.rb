@@ -4,7 +4,7 @@ require 'json'
 
 module Teamwork
 
-  VERSION = "1.0.7"
+  VERSION = "1.0.6"
 
   class API
 
@@ -23,7 +23,7 @@ module Teamwork
       @api_conn.basic_auth(api_key, '')
     end
 
-    def account(request_params = nil)
+    def account(request_params)
       response = @api_conn.get "account.json", request_params
       response.body
     end
@@ -38,6 +38,19 @@ module Teamwork
       response.body
     end
 
+    def project_people(id)
+      response = @api_conn.get "projects/#{id}/people.json", nil
+      response.body
+    end
+
+    def assign_people(id, params)
+      @api_conn.put "/projects/#{id}/people.json", params
+    end
+
+    def create_person(params)
+      @api_conn.post 'people.json', params
+    end
+
     def latestActivity(maxItems: 60, onlyStarred: false)
       request_params = {
         maxItems: maxItems,
@@ -50,6 +63,10 @@ module Teamwork
     def get_comment(id)
       response = @api_conn.get "comments/#{id}.json"
       response.body["comment"]
+    end
+
+    def companies(params = nil)
+      @api_conn.get 'companies.json', params
     end
 
     def get_company_id(name)
@@ -71,7 +88,8 @@ module Teamwork
           project: {
               name: name,
               companyId: company_id,
-              "category-id" => '0'
+              "category-id" => '0',
+              includePeople: false
           }
       }).headers['id']
     end
@@ -91,7 +109,7 @@ module Teamwork
     end
 
     def attach_post_to_project(title, body, project_id)
-      @api_conn.post "projects/#{project_id}/messsages.json", { post: { title: title, body: body } }
+      @api_conn.post "projects/#{project_id}/posts.json", { post: { title: title, body: body } }
     end
   end
 end
