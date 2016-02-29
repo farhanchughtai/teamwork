@@ -43,6 +43,11 @@ module Teamwork
       response.body
     end
 
+    def has_person_assigned_to_project(project_id, person_id)
+      response = @api_conn.get "projects/#{project_id}/people/#{person_id}.json", nil
+      response.body
+    end
+
     def assign_people(id, params)
       @api_conn.put "/projects/#{id}/people.json", params
     end
