@@ -99,12 +99,13 @@ module Teamwork
       }).headers['id']
     end
 
-    def update_project(id, name, client_name)
+    def update_project(id, name, client_name, status)
       company_id = get_or_create_company(client_name)
       @api_conn.put("projects/#{id}.json", {
           project: {
               name: name,
-              companyId: company_id
+              companyId: company_id,
+              status: status
           }
       }).status
     end
