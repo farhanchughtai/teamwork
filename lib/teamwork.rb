@@ -99,6 +99,15 @@ module Teamwork
       }).headers['id']
     end
 
+    def mark_task_completed(project_id, task_id)
+      @api_conn.put "tasks/#{task_id}/complete.json", nil
+    end
+
+    def retrieve_all_tasks(project_id)
+      response = @api_conn.get "projects/#{project_id}/tasks.json", nil
+      response.body
+    end
+
     def update_project(id, name, client_name, status)
       company_id = get_or_create_company(client_name)
       @api_conn.put("projects/#{id}.json", {
