@@ -82,6 +82,15 @@ module Teamwork
       @api_conn.post 'companies.json', { company: { name: name } }
     end
 
+    def update_company(company_id, name)
+      company = @api_conn.put("companies/#{company_id}.json", {
+        "company": {
+          id: company_id,
+          name: name
+        }
+      })
+    end
+
     def get_or_create_company(name)
       create_company(name) if !get_company_id(name)
       get_company_id(name)
