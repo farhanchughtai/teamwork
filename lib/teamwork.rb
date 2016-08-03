@@ -56,6 +56,10 @@ module Teamwork
       @api_conn.post 'people.json', params
     end
 
+    def get_person(person_id)
+      @api_conn.get "/people/#{person_id}.json", params
+    end
+
     def latestActivity(maxItems: 60, onlyStarred: false)
       request_params = {
         maxItems: maxItems,
