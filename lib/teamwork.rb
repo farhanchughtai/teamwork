@@ -56,7 +56,7 @@ module Teamwork
       @api_conn.post 'people.json', params
     end
 
-    def get_person(person_id)
+    def get_person(person_id, params = nil)
       @api_conn.get "/people/#{person_id}.json", params
     end
 
@@ -76,6 +76,10 @@ module Teamwork
 
     def companies(params = nil)
       @api_conn.get 'companies.json', params
+    end
+
+    def get_people_within_company(company_id, params = nil)
+      @api_conn.get "/companies/#{company_id}/people.json", params
     end
 
     def get_company_id(name)
