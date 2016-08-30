@@ -145,7 +145,7 @@ module Teamwork
     end
 
     def delete_person(id)
-      @api_conn.delete "/people/{id}.json"
+      @api_conn.delete "/people/#{id}.json"
     end
 
     def attach_post_to_project(title, body, project_id)
