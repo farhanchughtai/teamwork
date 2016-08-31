@@ -148,6 +148,10 @@ module Teamwork
       @api_conn.delete "/people/#{id}.json"
     end
 
+    def get_tasks(project_id)
+      @api_conn.get "/projects/#{project_id}/tasks.json"
+    end
+
     def attach_post_to_project(title, body, project_id)
       @api_conn.post "projects/#{project_id}/posts.json", { post: { title: title, body: body } }
     end
