@@ -148,6 +148,10 @@ module Teamwork
       @api_conn.delete "/people/#{id}.json"
     end
 
+    def get_project(id)
+      @api_conn.get "projects/#{id}.json"
+    end
+
     def get_tasks(project_id)
       @api_conn.get "/projects/#{project_id}/tasks.json"
     end
