@@ -149,7 +149,9 @@ module Teamwork
     end
 
     def get_project(id)
-      @api_conn.get "projects/#{id}.json"
+      @api_conn.get("projects/#{id}.json", {
+        includePeople: true
+      })
     end
 
     def get_tasks(project_id)
