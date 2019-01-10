@@ -83,7 +83,7 @@ module Teamwork
     end
 
     def get_company_id(name)
-      Hash[@api_conn.get('companies.json').body["companies"].map { |c| [c['name'], c['id']] }][name]
+      Hash[@api_conn.get('companies.json',pageSize:10000).body["companies"].map { |c| [c['name'], c['id']] }][name]
     end
 
     def create_company(name)
